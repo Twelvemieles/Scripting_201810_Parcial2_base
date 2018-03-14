@@ -3,14 +3,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField]
-    private Rigidbody bulletGO;
-
-    [SerializeField]
     private float shootSpeed;
 
+    protected int vida;
+    [SerializeField]
+    private Rigidbody[] bulletGO;
+
+    [SerializeField]
+    
     private bool startedShoot;
     private RaycastHit rayInfo;
+    protected int puntajeDar;
+
+
+
 
     // Use this for initialization
     private void Start()
@@ -45,7 +51,8 @@ public class Enemy : MonoBehaviour
 
     private void Shoot()
     {
-        Rigidbody bulletInstance = Instantiate(bulletGO, transform.position + (Vector3.down * 2.5F), transform.rotation);
+        int i = Random.Range(0, bulletGO.Length);
+        Rigidbody bulletInstance = Instantiate(bulletGO[i], transform.position + (Vector3.down * 2.5F), transform.rotation);
         bulletInstance.AddForce((transform.up * -1F) * shootSpeed, ForceMode.Impulse);
     }
 }
