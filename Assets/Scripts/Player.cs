@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
+    [SerializeField]
+    private Rigidbody bulletGO;
     [SerializeField]
     private int moveCount;
 
@@ -41,9 +43,12 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void Shoot()
+    public override void Shoot()
     {
-        //Rigidbody bulletInstance = Instantiate(bulletGO, transform.position + (Vector3.down * 2.5F), transform.rotation);
-       // bulletInstance.AddForce((transform.up * -1F) * shootSpeed, ForceMode.Impulse);
+        Rigidbody bulletInstance = Instantiate(bulletGO, transform.position + (Vector3.up * 2.5F), transform.rotation);
+        
     }
+
+    public override void die()
+    { }
 }

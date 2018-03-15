@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour {
+public abstract class Character : MonoBehaviour {
     
     
     // Use this for initialization
@@ -14,4 +14,18 @@ public class Character : MonoBehaviour {
 	void Update () {
 		
 	}
+    protected void OnCollisionEnter(Collision other)
+    {
+        int otherLayer = other.gameObject.layer;
+
+        if (otherLayer == LayerMask.NameToLayer("Bullet"))
+        {
+            die();
+        }
+
+        Destroy(gameObject);
+    }
+    public abstract void Shoot();
+    public abstract void die();
+
 }
